@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useMemo, useState } from "react";
 import { useGasolineras } from "./hooks/useGasolineras";
 import { useGeolocation } from "./hooks/useGeolocation";
@@ -7,7 +6,7 @@ import { CIUDADES } from "./utils/ciudades";
 import FilterPanel from "./components/FilterPanel";
 import GasolinerasList from "./components/GasolinerasList";
 import SelectorUbicacion from "./components/SelectorUbicacion";
-import './index.css';
+import "./App.css";
 
 const FILTROS_INICIALES = {
   empresa: "",
@@ -32,7 +31,7 @@ export default function App() {
       .filter((g) =>
         g.distancia <= filtros.radioKm &&
         (!filtros.empresa || g["Rótulo"] === filtros.empresa) &&
-        true
+        !!g[filtros.carburante]
       )
       .sort((a, b) => a.distancia - b.distancia)
       .slice(0, 50);
@@ -41,7 +40,7 @@ export default function App() {
   if (loading) return (
     <div className="estado">
       <div className="spinner"></div>
-      <p>Cargando precios de combustibles...</p>
+      <p>Cargando precios de carburantes...</p>
     </div>
   );
 
@@ -55,8 +54,8 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Gasolineras cercanas</h1>
-        <p className="subtitulo">Precios en tiempo real · Ministerio para la Transformación Digital </p>
+        <h1>⛽ Gasolineras cercanas</h1>
+        <p className="subtitulo">Precios en tiempo real · Ministerio para la Transformación Digital</p>
         {position && !geoCargando && (
           <p className="pos-info">
             📍 {ciudadSeleccionada.lat === null ? "Tu ubicación GPS" : ciudadSeleccionada.nombre}
@@ -94,28 +93,3 @@ export default function App() {
     </div>
   );
 }
-
-const resultado = useMemo(() => {
-  if (!position || !gasolineras.length) return [];
-
-  // LOG TEMPORAL - bórralo después
-  const primera = gasolineras[0];
-  console.log("Claves de una gasolinera:", Object.keys(primera));
-  console.log("Ejemplo gasolinera:", primera);
-
-  return gasolineras
-    .map((g) => {
-      const lat = parseFloat(g["Latitud"].replace(",", "."));
-      const lon = parseFloat(g["Longitud (WGS84)"].replace(",", "."));
-      return { ...g, distancia: haversine(position.lat, position.lon, lat, lon) };
-    })
-    .filter((g) =>
-      g.distancia <= filtros.radioKm &&
-      (!filtros.empresa || g["Rótulo"] === filtros.empresa) &&
-      !!g[filtros.carburante]
-    )
-    .sort((a, b) => a.distancia - b.distancia)
-    .slice(0, 50);
-}, [gasolineras, position, filtros]);
-
-
