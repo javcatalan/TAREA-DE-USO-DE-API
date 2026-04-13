@@ -32,7 +32,7 @@ export default function App() {
       .filter((g) =>
         g.distancia <= filtros.radioKm &&
         (!filtros.empresa || g["Rótulo"] === filtros.empresa) &&
-        !!g[filtros.carburante]
+        true
       )
       .sort((a, b) => a.distancia - b.distancia)
       .slice(0, 50);
@@ -94,5 +94,28 @@ export default function App() {
     </div>
   );
 }
+
+const resultado = useMemo(() => {
+  if (!position || !gasolineras.length) return [];
+
+  // LOG TEMPORAL - bórralo después
+  const primera = gasolineras[0];
+  console.log("Claves de una gasolinera:", Object.keys(primera));
+  console.log("Ejemplo gasolinera:", primera);
+
+  return gasolineras
+    .map((g) => {
+      const lat = parseFloat(g["Latitud"].replace(",", "."));
+      const lon = parseFloat(g["Longitud (WGS84)"].replace(",", "."));
+      return { ...g, distancia: haversine(position.lat, position.lon, lat, lon) };
+    })
+    .filter((g) =>
+      g.distancia <= filtros.radioKm &&
+      (!filtros.empresa || g["Rótulo"] === filtros.empresa) &&
+      !!g[filtros.carburante]
+    )
+    .sort((a, b) => a.distancia - b.distancia)
+    .slice(0, 50);
+}, [gasolineras, position, filtros]);
 
 
