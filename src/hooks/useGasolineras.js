@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 
-const API_URL =
-  "https://corsproxy.io/?url=" +
-  encodeURIComponent(
-    "https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/"
-  );
+const API_URL = "/gasolineras-api/EstacionesTerrestres/";
 
 export function useGasolineras() {
   const [gasolineras, setGasolineras] = useState([]);
