@@ -4,7 +4,7 @@ import { CIUDADES } from "../utils/ciudades";
 export default function SelectorUbicacion({ ciudadSeleccionada, setCiudadSeleccionada }) {
   return (
     <div className="campo ancho-completo">
-      <label>📍 Ubicación</label>
+      <label> Ubicación</label>
       <select
         value={ciudadSeleccionada.nombre}
         onChange={(e) => {

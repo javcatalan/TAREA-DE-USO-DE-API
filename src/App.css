@@ -1,7 +1,7 @@
 :root {
-  --verde:        #1D9E75;
+  --verde:        #008e71;
   --verde-light:  #E1F5EE;
-  --verde-dark:   #0F6E56;
+  --verde-dark:   #0c5d49;
   --gris-bg:      #F7F8FA;
   --gris-borde:   #E2E6EA;
   --gris-texto:   #6B7280;
@@ -306,4 +306,18 @@
   background: #FEF2F2;
   color: #B91C1C;
   border: 1px solid #FECACA;
+}
+/* ── Footer ── */
+.app-footer {
+  margin-top: 3rem;
+  padding: 1.25rem 2rem;
+  background: var(--verde);
+  color: var(--blanco);
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.app-footer strong {
+  font-weight: 700;
 }

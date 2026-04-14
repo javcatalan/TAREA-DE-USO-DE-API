@@ -16,7 +16,7 @@ export default function GasolineraCard({ gasolinera, carburante }) {
           {gasolinera["Dirección"]}, {gasolinera["Municipio"]}
         </span>
         <span className="distancia-pill">
-          📍 {gasolinera.distancia.toFixed(1)} km
+           {gasolinera.distancia.toFixed(1)} km
         </span>
       </div>
     </div>

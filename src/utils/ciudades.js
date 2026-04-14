@@ -1,6 +1,6 @@
 // src/utils/ciudades.js
 export const CIUDADES = [
-  { nombre: "📍 Usar mi ubicación real", lat: null, lon: null },
+  { nombre: " Usar mi ubicación real", lat: null, lon: null },
   { nombre: "Madrid", lat: 40.4168, lon: -3.7038 },
   { nombre: "Barcelona", lat: 41.3851, lon: 2.1734 },
   { nombre: "Valencia", lat: 39.4699, lon: -0.3763 },

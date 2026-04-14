@@ -54,7 +54,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>⛽ Gasolineras cercanas</h1>
+        <h1> Gasolineras cercanas</h1>
         <p className="subtitulo">Precios en tiempo real · Ministerio para la Transformación Digital</p>
         {position && !geoCargando && (
           <p className="pos-info">
@@ -90,6 +90,13 @@ export default function App() {
       </div>
 
       <GasolinerasList gasolineras={resultado} filtros={filtros} />
+
+      <footer className="app-footer">
+        <p>Desarrollado por <strong>Francisco Javier Catala Llamas</strong></p>
+        <p>Actividad 3: Uso de una API en aplicación de componentes</p>
+        <p>Dr. Edgar German Molina Madrigal - 13 de abril del 2026</p>
+
+      </footer>
     </div>
   );
 }
