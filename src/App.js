@@ -54,11 +54,11 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1> Gasolineras cercanas</h1>
-        <p className="subtitulo">Precios en tiempo real · Ministerio para la Transformación Digital</p>
+        <h1> Uso de una API en aplicación de componentes</h1>
+        <p className="subtitulo">Gasolineras cercanas - Precios en tiempo real</p>
         {position && !geoCargando && (
           <p className="pos-info">
-            📍 {ciudadSeleccionada.lat === null ? "Tu ubicación GPS" : ciudadSeleccionada.nombre}
+             {ciudadSeleccionada.lat === null ? "Tu ubicación GPS" : ciudadSeleccionada.nombre}
             &nbsp;·&nbsp;{position.lat.toFixed(4)}, {position.lon.toFixed(4)}
           </p>
         )}
